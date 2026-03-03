@@ -1,0 +1,244 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #137fec;
+  --color-background-light: #f8fafc;
+  --color-background-dark: #0f172a;
+  --font-family-display: "Syne", sans-serif; /* Changed from Inter */
+  --font-family-body: "DM Sans", sans-serif; /* Added body font */
+  --radius: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+  --breakpoint-xs: 360px;
+}
+
+@layer base {
+  body {
+    @apply bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100;
+    font-family: var(--font-family-body);
+    font-size: 0.875rem; /* 14px - dashboards use smaller base */
+    line-height: 1.5;
+  }
+
+  /* Better clamp formulas that scale down properly for 360px */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-family-display);
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 3rem); /* 24px (360px) → 48px (desktop) */
+  }
+
+  h2 {
+    font-size: clamp(1.125rem, 4vw, 2.25rem); /* 18px → 36px */
+  }
+
+  h3 {
+    font-size: clamp(1rem, 3vw, 1.75rem); /* 16px → 28px */
+  }
+
+  h4 {
+    font-size: clamp(0.9375rem, 2.5vw, 1.5rem); /* 15px → 24px */
+  }
+
+  h5 {
+    font-size: clamp(0.875rem, 2vw, 1.25rem); /* 14px → 20px */
+  }
+
+  h6 {
+    font-size: clamp(0.8125rem, 1.5vw, 1rem); /* 13px → 16px */
+  }
+
+  p,
+  span {
+    font-size: clamp(0.8125rem, 1.5vw, 1rem); /* 13px → 16px */
+    line-height: 1.6;
+  }
+
+  small {
+    font-size: clamp(0.75rem, 1vw, 0.875rem); /* 12px → 14px */
+  }
+
+  .logo-text {
+    font-size: 1.25rem; /* 20px - logo size */
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .page-title {
+    font-size: 1.75rem; /* 28px - page header */
+    font-weight: 700;
+    line-height: 1.2;
+  }
+}
+
+/* THE PROGRESSIVE MASK */
+@layer utilities {
+  /* Vertical fade (for desktop) */
+  .feather-mask-vertical {
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    background: linear-gradient(
+      to top,
+      rgba(2, 6, 23, 0.95) 0%,
+      rgba(2, 6, 23, 0.95) 25%,
+      rgba(2, 6, 23, 0.65) 45%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to top,
+      black 0%,
+      black 45%,
+      rgba(0, 0, 0, 0.8) 60%,
+      rgba(0, 0, 0, 0.3) 85%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to top,
+      black 0%,
+      black 45%,
+      rgba(0, 0, 0, 0.8) 60%,
+      rgba(0, 0, 0, 0.3) 85%,
+      transparent 100%
+    );
+  }
+
+  .overlay-blur-vertical {
+    backdrop-filter: blur(8px) saturate(180%);
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.95) 25%,
+      rgba(0, 0, 0, 0.65) 45%,
+      rgba(0, 0, 0, 0) 100%
+    );
+
+    /* MASK IMAGE: Already uses black/alpha logic, but cleaned up */
+    mask-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 45%,
+      rgba(0, 0, 0, 0.8) 60%,
+      rgba(0, 0, 0, 0.3) 85%,
+      rgba(0, 0, 0, 0) 100%
+    );
+
+    -webkit-mask-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 45%,
+      rgba(0, 0, 0, 0.8) 60%,
+      rgba(0, 0, 0, 0.3) 85%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  .overlay-blur-horizontal {
+    backdrop-filter: blur(8px) saturate(180%);
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.95) 25%,
+      rgba(0, 0, 0, 0.65) 45%,
+      rgba(0, 0, 0, 0) 100%
+    );
+
+    /* MASK IMAGE: Already uses black/alpha logic, but cleaned up */
+    mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 45%,
+      rgba(0, 0, 0, 0.8) 60%,
+      rgba(0, 0, 0, 0.3) 85%,
+      rgba(0, 0, 0, 0) 100%
+    );
+
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 45%,
+      rgba(0, 0, 0, 0.8) 60%,
+      rgba(0, 0, 0, 0.3) 85%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  /* Horizontal fade (for mobile) */
+  .feather-mask-horizontal {
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    background: linear-gradient(
+      to right,
+      rgba(2, 6, 23, 0.95) 0%,
+      rgba(2, 6, 23, 0.8) 50%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      black 0%,
+      black 45%,
+      rgba(0, 0, 0, 0.8) 60%,
+      rgba(0, 0, 0, 0.3) 85%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      black 0%,
+      black 45%,
+      rgba(0, 0, 0, 0.8) 60%,
+      rgba(0, 0, 0, 0.3) 85%,
+      transparent 100%
+    );
+  }
+
+  .truncate-guest-name {
+    flex: 1;
+    min-width: 0;
+    max-width: 150px; /* Or any relative unit like 10rem */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+  }
+}
+
+/* Text Shadow for Image Legibility */
+.text-shadow-strong {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.material-symbols-outlined {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+/* mine */
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 20;
+  font-size: 20px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body {
+  min-height: max(884px, 100dvh);
+}
