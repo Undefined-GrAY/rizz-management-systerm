@@ -7,8 +7,8 @@ export function DurationChart({recentBookings}: DurationProps) {
 
   const data = prepareDurationChartData(recentBookings || []);
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
-      <h3 className=" text-slate-900 dark:text-white mb-6">
+    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm py-4 md:p-6">
+      <h3 className="ml-4 text-slate-900 dark:text-white mb-6">
         Stay duration summary
       </h3>
 

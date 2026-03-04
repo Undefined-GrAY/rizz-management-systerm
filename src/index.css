@@ -18,11 +18,18 @@
 }
 
 @layer base {
+  html, body {
+    height: 100%;
+    overflow: hidden; /* Prevent body scroll */
+  }
+  
   body {
     @apply bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100;
     font-family: var(--font-family-body);
     font-size: 0.875rem; /* 14px - dashboards use smaller base */
     line-height: 1.5;
+    position: fixed; /* Lock body position */
+    width: 100%;
   }
 
   /* Better clamp formulas that scale down properly for 360px */
