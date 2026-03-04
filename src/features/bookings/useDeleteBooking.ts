@@ -8,7 +8,7 @@ const useDeleteBooking = () => {
   const { isPending, mutate } = useMutation({
     mutationFn: (id: number) => deleteBooking(id),
     onSuccess: (data) => {
-      toast.success(`d${data.id} was successfully delted!`);
+      toast.success(`d${data.id} was successfully deleted!`);
       queryClient.invalidateQueries({
         queryKey: ["cabins"],
       });

@@ -14,6 +14,7 @@
   --radius-xl: 0.75rem;
   --radius-full: 9999px;
   --breakpoint-xs: 360px;
+  --spacing-screen: 100dvh;
 }
 
 @layer base {
@@ -112,6 +113,16 @@
       rgba(0, 0, 0, 0.3) 85%,
       transparent 100%
     );
+
+    .h-dvh {
+      height: 100dvh;
+    }
+    .h-svh {
+      height: 100svh; /* Small viewport height */
+    }
+    .h-lvh {
+      height: 100lvh; /* Large viewport height */
+    }
   }
 
   .overlay-blur-vertical {
@@ -206,7 +217,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
   }
 }
 

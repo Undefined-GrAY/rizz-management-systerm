@@ -13,7 +13,6 @@
     "@supabase/supabase-js": "^2.95.3",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-query": "^5.90.20",
-    "@tanstack/react-query-devtools": "^5.91.3",
     "country-flag-icons": "^1.6.13",
     "date-fns": "^4.1.0",
     "react": "^19.2.0",
