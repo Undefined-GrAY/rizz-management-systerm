@@ -1,15 +1,10 @@
-import { Icon } from "./Icon";
-// import { Button } from "./Button";
-// import { Filter } from "./Filter";
-// import { SortBy } from "./SortBy";
+import { NavLink, useNavigate } from "react-router-dom";
 
+import { Icon } from "./Icon";
 import { DarkModeToggle } from "./Darkmodetoggle";
 import type { HeaderProps } from "../types/types";
-
-import { NavLink, useNavigate } from "react-router-dom";
 import { useUser } from "../features/authentication/useUser";
 import { logout } from "../service/apiAuth";
-import toast from "react-hot-toast";
 
 export function Header({
   title,
@@ -18,6 +13,7 @@ export function Header({
   onBack,
 }: HeaderProps) {
   const navigate = useNavigate();
+
   const { user, isPending: loadingMetaData } = useUser();
   const {
     fullName: currentFullName,
@@ -86,7 +82,10 @@ export function Header({
               </div>
             </NavLink>
             <DarkModeToggle />
-            <button onClick={handleLogout} className="bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 py-2">
+            <button
+              onClick={handleLogout}
+              className="bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 py-2"
+            >
               <Icon name="logout" />
             </button>
           </div>

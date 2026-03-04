@@ -30,6 +30,6 @@ export const prepareSalesData = (bookings: recentBooking, numDays: number) => {
     };
   });
 
-  console.log("salesdata",data)
+
   return data;
 };

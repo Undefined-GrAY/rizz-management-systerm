@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Icon } from "../ui/Icon";
 import Logo from "./Logo";
 import { useUser } from "../features/authentication/useUser";
+import { logout } from "../service/apiAuth";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -17,12 +18,28 @@ const navItems = [
 ];
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
+    const navigate = useNavigate();
   const { user, isPending: loadingMetaData, isAdmin } = useUser();
   const {
     fullName: currentFullName,
     avatar: currentAvatar,
     email: userEmail,
   } = user?.user_metadata || {};
+
+
+
+    const handleLogout = async () => {
+      try {
+        await logout();
+  
+        navigate("/login", { replace: true });
+      } catch (error) {
+        // toast.error(error.message)
+        console.error("Logout failed, but redirecting anyway");
+        navigate("/login", { replace: true });
+      }
+    };
+  
 
   return (
     <aside
@@ -99,18 +116,21 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       </nav>
 
       {/* User Profile - Desktop Only */}
-      <div className="hidden lg:block absolute bottom-0 left-0 right-0 p-4 border-t border-slate-200 dark:border-slate-800">
-        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+      <div className="block absolute bottom-0 left-0 right-0 p-4 border-t border-slate-200 dark:border-slate-800">
+        <div className="flex items-center gap-3 p-3 rounded-lg ">
           <div className="size-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
             {/* <div
               className="w-full h-full object-cover"
               style={{ backgroundImage: `url(https://i.pravatar.cc/48)` }}
             ></div> */}
-            <img
+             <NavLink to="/account">
+              <img
               src={currentAvatar}
               alt={currentFullName}
               className="w-full h-full object-cover"
             />
+             </NavLink>
+           
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-slate-900 dark:text-white truncate capitalize">
@@ -120,7 +140,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               {isAdmin ? " Administrator" : "Staff"}
             </p>
           </div>
-          <button className="p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded transition-colors">
+          <button onClick={handleLogout}  className="p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded transition-colors">
             <Icon name="logout" size={18} className="text-slate-400" />
           </button>
         </div>

@@ -28,14 +28,11 @@ export function DarkModeToggle() {
     setIsDark(!isDark);
   };
 
-
   return (
     <button
       className="bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 py-2"
       onClick={toggleTheme}
-      // className="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-all"
       aria-label="Toggle dark mode"
-
     >
       {/* Sun icon - shows in dark mode */}
 

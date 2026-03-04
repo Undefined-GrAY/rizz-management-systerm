@@ -12,15 +12,6 @@ import { prepareSalesData } from "../../utils/prepareSalesData";
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
-const data = [
-  { date: "May 25", totalSales: 2500, extrasSales: 800 },
-  { date: "May 26", totalSales: 5200, extrasSales: 1200 },
-  { date: "May 27", totalSales: 1800, extrasSales: 600 },
-  { date: "May 28", totalSales: 8000, extrasSales: 1500 },
-  { date: "May 29", totalSales: 6500, extrasSales: 1400 },
-  { date: "May 30", totalSales: 3200, extrasSales: 900 },
-  { date: "May 31", totalSales: 11000, extrasSales: 2000 },
-];
 
 interface SalesChartProps {
   startDate?: string;

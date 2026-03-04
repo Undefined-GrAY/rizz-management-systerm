@@ -2,8 +2,11 @@ import { useForm, FormProvider } from "react-hook-form";
 import { Form } from "../../ui/Form";
 import { Button } from "../../ui/Button";
 import { Icon } from "../../ui/Icon";
+import { useUser } from "../authentication/useUser";
 
 export default function UpdatePassword() {
+  const { user, isAdmin } = useUser();
+
   const methods = useForm({
     defaultValues: {
       newPassword: "",
@@ -109,7 +112,7 @@ export default function UpdatePassword() {
               </Button>
               <Button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !isAdmin}
                 icon={
                   isSubmitting ? (
                     <Icon name="refresh" className="animate-spin" size={18} />

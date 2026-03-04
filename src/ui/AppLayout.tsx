@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import {  Outlet, useNavigate } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { MobileHeader } from './MobileHeader';
+import { DemoBanner } from './DemoWarningModal';
 
 export function AppLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -32,6 +33,7 @@ export function AppLayout() {
 
   return (
     <div className="flex h-screen overflow-hidden">
+    
       {/* Overlay - Only on mobile */}
       {sidebarOpen && (
         <div
@@ -39,7 +41,7 @@ export function AppLayout() {
           onClick={() => setSidebarOpen(false)}
         />
       )}
-
+      
       {/* Sidebar - Slides from left */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
@@ -53,7 +55,7 @@ export function AppLayout() {
       >
         {/* Mobile Header - Hidden on desktop */}
         <MobileHeader onMenuClick={() => setSidebarOpen(true)} onBack={() => navigate("/bookings")} />
-
+         <DemoBanner/>
         {/* Page Content */}
         <main className="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-950">
           <Outlet />

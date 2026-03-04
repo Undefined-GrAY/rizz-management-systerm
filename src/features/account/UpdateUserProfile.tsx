@@ -8,7 +8,7 @@ import { useUser } from "../authentication/useUser";
 import { Spinner } from "../../ui/Spinner";
 
 export default function UpdateUserProfile() {
-  const { user, isPending: loadingMetaData } = useUser();
+  const { user, isPending: loadingMetaData, isAdmin } = useUser();
   const {
     fullName: currentFullName,
     avatar: currentAvatar,
@@ -45,12 +45,7 @@ export default function UpdateUserProfile() {
 
   const onSubmit = async (data) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      console.log("Update profile:", {
-        ...data,
-        photo: selectedFile,
-      });
       updateUser({
         fullName: data.fullName,
         email: data.email,
@@ -154,7 +149,7 @@ export default function UpdateUserProfile() {
               </Button>
               <Button
                 type="submit"
-                disabled={isSubmitting || isPending}
+                disabled={isSubmitting || isPending || !isAdmin}
                 icon={
                   isSubmitting ? (
                     <Icon name="refresh" className="animate-spin" size={18} />
